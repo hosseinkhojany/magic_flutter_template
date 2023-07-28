@@ -1,0 +1,49 @@
+name: rapexa_academy
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.6.5
+  dio: ^5.3.0
+  hive: ^2.2.3
+  flutter_easyloading: ^3.0.5
+  awesome_notifications: ^0.7.4+1
+  cached_network_image: ^3.2.3
+  package_info_plus: ^4.0.2
+  path_provider: ^2.0.15
+  url_launcher: ^6.1.12
+  http_interceptor: ^1.0.2
+  native_dio_adapter: 1.0.0+1
+  device_preview: ^1.1.0
+  flutter_screenutil: ^5.8.4
+  native_toast: ^0.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+
+dependency_overrides:
+  intl: ^0.18.1
+  http: ^1.1.0
+
+flutter:
+
+  fonts:
+    - family: shabnam
+      fonts:
+        - asset: assets/fonts/shabnam.ttf
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/flags/
