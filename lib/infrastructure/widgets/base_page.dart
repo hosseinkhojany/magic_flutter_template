@@ -7,7 +7,8 @@ class BasePage extends StatefulWidget{
 
   Widget child;
   NavigationBar? bottomNavigationBar;
-  BasePage({super.key, required this.child, this.bottomNavigationBar});
+  AppBar? appBar;
+  BasePage({super.key, required this.child, this.bottomNavigationBar, this.appBar});
 
   @override
   State<StatefulWidget> createState() {
@@ -18,9 +19,14 @@ class BasePage extends StatefulWidget{
 class _BasePageState extends State<BasePage>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: widget.child,
-      bottomNavigationBar: widget.bottomNavigationBar,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: widget.appBar,
+        backgroundColor: Colors.white,
+        body: widget.child,
+        bottomNavigationBar: widget.bottomNavigationBar,
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppFonts {
+  static String appFont = "iran_sans";
   static double s8 = 8.0.sp;
   static double s9 = 9.0.sp;
   static double s10 = 10.0.sp;

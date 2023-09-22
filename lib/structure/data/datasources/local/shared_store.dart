@@ -1,12 +1,19 @@
 import 'dart:async' show Future;
+import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:rapexa_academy/structure/data/models/response/get_posts_rp.dart';
+import 'package:rapexa_academy/structure/data/models/response/get_products_rp.dart';
+import 'package:rapexa_academy/structure/data/models/response/logins_and_forgot_and_register_rp.dart';
 
 
 const usernameKey = "username";
 const passwordKey = "password";
 const tokenKey = "tokenKey";
 const appThemeKey = "appTheme";
+const productsKey = "products";
+const postsKey = "postsKey";
 const batterOptimizeKey = "batterOptimizeKey";
 
 class SharedStore {
@@ -47,12 +54,26 @@ class SharedStore {
     await box.put(passwordKey, password);
   }
 
-  static String getToken() {
-    return box.get(tokenKey, defaultValue: "")!;
+  static LoginRp? getUser() {
+    try {
+      return LoginRp.fromJson(
+          jsonDecode(box.get(tokenKey, defaultValue: "")!));
+    } on Exception catch (e) {
+      e.printError();
+      return null;
+    }
   }
 
-  static setToken(String value) {
-    return box.put(tokenKey, value);
+  static setUser(LoginRp value) async {
+      return box.put(tokenKey, jsonEncode(value.toJson()));
+  }
+
+  static bool linkIsInitialized(String link) {
+      return box.get(link) != null;
+  }
+
+  static addLinkIsInitialized(String link) {
+    return box.put(link, "1");
   }
 
   static bool getBatteryOptimizeDone() {
@@ -70,5 +91,42 @@ class SharedStore {
   static setTheme(String value) {
     return box.put(appThemeKey, value);
   }
+
+  static GetProductsRp? getProducts() {
+    try {
+      return GetProductsRp.fromJson(
+          jsonDecode(box.get(productsKey, defaultValue: "")!));
+    } on Exception catch (e) {
+      e.printError();
+      return null;
+    }
+  }
+
+  static setProducts(dynamic value) {
+    try{
+      box.put(productsKey, jsonEncode(value.toJson()));
+    }catch(e){
+      e.printError();
+    }
+  }
+
+  static GetPostsRp? getPosts() {
+    try {
+      return GetPostsRp.fromJson(
+          jsonDecode(box.get(postsKey, defaultValue: "")!));
+    } on Exception catch (e) {
+      e.printError();
+      return null;
+    }
+  }
+
+  static setPosts(dynamic value) {
+    try{
+      box.put(postsKey, jsonEncode(value.toJson()));
+    }catch(e){
+      e.printError();
+    }
+  }
+
 
 }

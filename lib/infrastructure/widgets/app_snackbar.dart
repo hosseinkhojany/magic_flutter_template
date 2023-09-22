@@ -50,16 +50,16 @@ class AppSnackBar {
   }
 
   static void showLoading() {
-    if (!EasyLoading.isShow) {
+    // if (!EasyLoading.isShow) {
       EasyLoading.instance
         ..displayDuration = const Duration(milliseconds: 2000)
         ..loadingStyle = EasyLoadingStyle.light
         ..indicatorSize = 50.0.r
         ..radius = 10.0
-        // ..progressColor = Colors.yellow
-        // ..backgroundColor = Colors.green
-        // ..indicatorColor = Colors.yellow
-        // ..textColor = Colors.yellow
+      // ..progressColor = Colors.yellow
+      // ..backgroundColor = Colors.green
+      // ..indicatorColor = Colors.yellow
+      // ..textColor = Colors.yellow
         ..maskColor = Colors.blue.withOpacity(0.5)
         ..userInteractions = false
         ..maskType = EasyLoadingMaskType.black
@@ -67,12 +67,12 @@ class AppSnackBar {
         ..indicatorType = EasyLoadingIndicatorType.doubleBounce
         ..animationStyle = EasyLoadingAnimationStyle.scale;
       EasyLoading.show();
-    }
+    // }
   }
 
-  static void dismissLoading() {
+  static Future dismissLoading() async {
     if (EasyLoading.isShow) {
-      EasyLoading.dismiss();
+      await EasyLoading.dismiss();
     }
   }
 }

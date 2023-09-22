@@ -11,3 +11,8 @@ enum Flavor{
   MAIN
 }
 
+enum AppButtonType{
+  NORMAL,
+  FORGOT_PASSWORD
+}
+

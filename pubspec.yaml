@@ -19,12 +19,22 @@ dependencies:
   cached_network_image: ^3.2.3
   package_info_plus: ^4.0.2
   path_provider: ^2.0.15
-  url_launcher: ^6.1.12
   http_interceptor: ^1.0.2
   native_dio_adapter: 1.0.0+1
   device_preview: ^1.1.0
   flutter_screenutil: ^5.8.4
   native_toast: ^0.0.2
+  flutter_staggered_animations: ^1.1.1
+  url_launcher: ^6.1.14
+  crisp: ^0.3.1
+  expandable: ^5.0.1
+  cupertino_icons: ^1.0.2
+  flutter_widget_from_html_core: ^0.10.5
+  gif_view: ^0.4.0
+  appinio_video_player:
+    git:
+      url: https://github.com/hosseinkhojany/cached_video_player_flutter_with_customable_ui_controller.git
+      ref: main
 
 dev_dependencies:
   flutter_test:
@@ -37,13 +47,13 @@ dependency_overrides:
   intl: ^0.18.1
   http: ^1.1.0
 
+
 flutter:
 
   fonts:
-    - family: shabnam
+    - family: iran_sans
       fonts:
-        - asset: assets/fonts/shabnam.ttf
+        - asset: assets/fonts/iran_sans.ttf
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/images/flags/

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:native_dio_adapter/native_dio_adapter.dart';
-import 'package:rapexa_academy/infrastructure/constants/endpoints.dart';
 
 import '../on_linked_vars.dart';
 
@@ -11,10 +10,9 @@ class HttpConfig{
 
   static Future<Dio> build() async{
     final options = BaseOptions(
-        baseUrl: "https://${EndPoints.APP_DOMAIN}",
-        connectTimeout: const Duration(milliseconds: 10000),
-        receiveTimeout: const Duration(milliseconds: 10000),
-        sendTimeout: const Duration(milliseconds: 10000),
+        connectTimeout: const Duration(milliseconds: 20000),
+        receiveTimeout: const Duration(milliseconds: 20000),
+        sendTimeout: const Duration(milliseconds: 20000),
         headers: {"Accept": "application/json"});
     Dio dio = Dio(options);
     if(Platform.isIOS || Platform.isAndroid){
@@ -35,10 +33,14 @@ class LoggingInterceptor extends Interceptor {
         '--> ${options.method} ${'${options.baseUrl}${options.path}'}');
     debugPrint('Headers:');
 
-    if(!options.uri.toString().endsWith("/login")){
-      options.headers.addAll({
-        "Authorization": "Bearer $token"
-      });
+    if(!options.uri.toString().contains("digits")){
+        options.headers.addAll({
+          "Authorization": token_wc
+        });
+      }else if(options.uri.toString().contains("digits") && options.uri.toString().contains("logout")){
+        options.headers.addAll({
+          "Authorization": user!.data!.accessToken!
+        });
     }
     options.headers.forEach((k, dynamic v) => debugPrint('$k: $v'));
     debugPrint('queryParameters:');
@@ -74,7 +76,7 @@ class LoggingInterceptor extends Interceptor {
   }
 
   void debugPrintWrapped(String text) {
-    final RegExp pattern = RegExp('.{1,800}');
+    final RegExp pattern = RegExp('.{1,1000}');
     pattern
         .allMatches(text)
         .forEach((RegExpMatch match) => debugPrint(match.group(0)));

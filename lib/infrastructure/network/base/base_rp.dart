@@ -5,3 +5,7 @@ class Failure extends BaseRp{
   String? message;
   Failure({this.networkConnectionError, this.httpStatusCode, this.message});
 }
+class ZeroOneRp extends BaseRp{
+  bool state = false;
+  ZeroOneRp(this.state);
+}
